@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebCraft Pro | Custom Website Solutions</title>
+    <title>WebCraft Kenya | Custom Website Development</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Global Styles */
+        /* Base Styles */
         :root {
             --primary: #2c3e50;
             --secondary: #3498db;
@@ -14,6 +14,7 @@
             --light: #ecf0f1;
             --dark: #2c3e50;
             --success: #27ae60;
+            --warning: #f39c12;
         }
         
         * {
@@ -40,14 +41,14 @@
         header {
             background-color: var(--primary);
             color: white;
-            padding: 1rem 0;
+            padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .header-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -58,12 +59,9 @@
             font-weight: 700;
             color: white;
             text-decoration: none;
-            display: flex;
-            align-items: center;
         }
         
-        .logo i {
-            margin-right: 10px;
+        .logo span {
             color: var(--secondary);
         }
         
@@ -73,7 +71,7 @@
         }
         
         nav ul li {
-            margin-left: 1.5rem;
+            margin-left: 25px;
         }
         
         nav ul li a {
@@ -81,20 +79,15 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
-            display: flex;
-            align-items: center;
         }
         
         nav ul li a:hover {
             color: var(--secondary);
         }
         
-        nav ul li a i {
-            margin-right: 5px;
-        }
-        
         .cart-icon {
             position: relative;
+            cursor: pointer;
         }
         
         .cart-count {
@@ -114,180 +107,240 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
             color: white;
-            padding: 5rem 0;
+            padding: 100px 0;
             text-align: center;
         }
         
         .hero h1 {
             font-size: 3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
         
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            margin: 0 auto 2rem;
+            margin: 0 auto 30px;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--accent);
+            background-color: var(--secondary);
             color: white;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            padding: 12px 30px;
+            border-radius: 5px;
             text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
         .btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-accent {
+            background-color: var(--accent);
+        }
+        
+        .btn-accent:hover {
             background-color: #c0392b;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid white;
-        }
-        
-        .btn-secondary:hover {
-            background-color: white;
-            color: var(--primary);
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 5rem 0;
-        }
-        
+        /* Services Section */
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin: 60px 0 40px;
+            color: var(--primary);
         }
         
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
         
         .section-title p {
-            color: #666;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+            color: #666;
         }
         
-        .product-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
         }
         
-        .product-card {
+        .service-card {
             background-color: white;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
         }
         
-        .product-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .product-image {
+        .service-img {
             height: 200px;
-            background-color: #f5f5f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-            font-size: 3rem;
+            background-size: cover;
+            background-position: center;
         }
         
-        .product-info {
-            padding: 1.5rem;
+        .service-content {
+            padding: 25px;
         }
         
-        .product-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
+        .service-content h3 {
+            margin-bottom: 15px;
             color: var(--primary);
         }
         
-        .product-info p {
+        .service-content p {
+            margin-bottom: 20px;
             color: #666;
-            margin-bottom: 1rem;
         }
         
-        .product-price {
+        .price {
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 1rem;
+            color: var(--accent);
+            margin-bottom: 20px;
         }
         
-        .product-features {
+        .service-features {
             list-style: none;
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
         
-        .product-features li {
-            margin-bottom: 0.5rem;
+        .service-features li {
+            margin-bottom: 8px;
             display: flex;
             align-items: center;
         }
         
-        .product-features li i {
+        .service-features li i {
             color: var(--success);
             margin-right: 10px;
         }
         
-        .product-actions {
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--secondary);
-            color: var(--secondary);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--secondary);
-            color: white;
-        }
-        
-        /* Popup Modal */
-        .modal {
-            display: none;
+        /* Cart Styles */
+        .cart-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
             justify-content: center;
+            align-items: center;
+            z-index: 2000;
         }
         
-        .modal-content {
+        .cart-container {
             background-color: white;
-            border-radius: 8px;
             width: 90%;
             max-width: 800px;
+            border-radius: 10px;
+            padding: 30px;
             max-height: 90vh;
             overflow-y: auto;
-            padding: 2rem;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h2 {
+            color: var(--primary);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-details h4 {
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+        }
+        
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding: 15px 0;
+            border-top: 2px solid #eee;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        
+        .modal {
+            background-color: white;
+            width: 90%;
+            max-width: 700px;
+            border-radius: 10px;
+            padding: 30px;
+            max-height: 90vh;
+            overflow-y: auto;
             position: relative;
         }
         
@@ -295,49 +348,33 @@
             position: absolute;
             top: 15px;
             right: 15px;
+            background: none;
+            border: none;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #666;
+            color: #777;
         }
         
         .modal-header {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
         }
         
         .modal-header h2 {
             color: var(--primary);
-            font-size: 2rem;
         }
         
-        .modal-body {
+        .modal-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        .modal-image {
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--secondary);
-        }
-        
-        .modal-details h3 {
-            margin-bottom: 1rem;
-            color: var(--primary);
+            gap: 20px;
         }
         
         .modal-features {
             list-style: none;
-            margin-bottom: 1.5rem;
         }
         
         .modal-features li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
         }
@@ -347,329 +384,190 @@
             margin-right: 10px;
         }
         
-        .modal-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Cart Page */
-        .cart-page {
-            padding: 5rem 0;
-        }
-        
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 2rem;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .cart-table th, .cart-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .cart-table th {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .cart-item-image {
-            width: 80px;
-            height: 60px;
-            background-color: #f5f5f5;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--secondary);
-        }
-        
-        .quantity-control {
-            display: flex;
-            align-items: center;
-        }
-        
-        .quantity-btn {
-            background-color: #f5f5f5;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .quantity-input {
-            width: 50px;
-            text-align: center;
-            margin: 0 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 5px;
-        }
-        
-        .remove-item {
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-        
-        .cart-summary {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .summary-total {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
-        /* Checkout Page */
-        .checkout-page {
-            padding: 5rem 0;
-        }
-        
-        .checkout-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        .order-summary {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            height: fit-content;
-        }
-        
-        .order-summary h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .order-items {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-        
-        .order-items li {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .order-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-        
         /* Contact Section */
         .contact-section {
-            padding: 5rem 0;
-            background-color: var(--light);
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
         }
         
-        .contact-grid {
+        .contact-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .contact-info {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            gap: 40px;
         }
         
         .contact-info h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
         }
         
-        .contact-method {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .contact-info p {
+            margin-bottom: 30px;
         }
         
-        .contact-icon {
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary);
-            border-radius: 50%;
+        .contact-methods {
             display: flex;
+            gap: 15px;
+        }
+        
+        .contact-btn {
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--secondary);
             color: white;
+            text-decoration: none;
             font-size: 1.2rem;
-            margin-right: 1rem;
+            transition: transform 0.3s;
         }
         
-        .contact-details h4 {
-            margin-bottom: 0.3rem;
-            color: var(--primary);
+        .contact-btn:hover {
+            transform: translateY(-5px);
         }
         
-        .contact-form {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        .contact-btn.whatsapp {
+            background-color: #25D366;
         }
         
-        .contact-form h3 {
-            margin-bottom: 1.5rem;
-            color: var(--primary);
+        .contact-btn.email {
+            background-color: var(--accent);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+        }
+        
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255,255,255,0.7);
         }
         
         /* Footer */
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0 1.5rem;
+            padding: 50px 0 20px;
         }
         
-        .footer-content {
+        .footer-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
+        .footer-col h4 {
+            margin-bottom: 20px;
             font-size: 1.2rem;
         }
         
-        .footer-column ul {
+        .footer-col ul {
             list-style: none;
         }
         
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
+        .footer-col ul li {
+            margin-bottom: 10px;
         }
         
-        .footer-column ul li a {
+        .footer-col ul li a {
             color: #bbb;
             text-decoration: none;
             transition: color 0.3s;
         }
         
-        .footer-column ul li a:hover {
-            color: white;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--secondary);
+        .footer-col ul li a:hover {
+            color: var(--secondary);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
             color: #bbb;
             font-size: 0.9rem;
         }
         
-        /* Responsive */
+        /* Checkout Page Styles */
+        .checkout-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .checkout-form input,
+        .checkout-form textarea,
+        .checkout-form select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .order-summary {
+            background-color: #f5f5f5;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        
+        .order-summary h3 {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+        
+        /* Responsive Styles */
         @media (max-width: 768px) {
-            .header-content {
+            .header-container {
                 flex-direction: column;
-                text-align: center;
             }
             
             nav ul {
-                margin-top: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            nav ul li {
-                margin: 0.5rem;
+                margin-top: 15px;
             }
             
             .hero h1 {
                 font-size: 2.2rem;
             }
             
-            .modal-body {
+            .modal-content {
                 grid-template-columns: 1fr;
             }
             
-            .checkout-form {
+            .checkout-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .cart-table {
-                display: block;
-                overflow-x: auto;
             }
         }
     </style>
@@ -677,743 +575,480 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <i class="fas fa-code"></i>
-                    WebCraft Pro
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#products"><i class="fas fa-shopping-bag"></i> Products</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-                        <li><a href="#" class="cart-icon">
-                            <i class="fas fa-shopping-cart"></i> Cart
-                            <span class="cart-count">0</span>
-                        </a></li>
-                    </ul>
-                </nav>
-            </div>
+        <div class="container header-container">
+            <a href="#" class="logo">Web<span>Craft</span> Kenya</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Custom Websites Built to Perfection</h1>
-            <p>We create stunning, responsive, and high-performing websites tailored to your business needs. From simple portfolios to complex e-commerce solutions.</p>
-            <a href="#products" class="btn">View Our Packages</a>
-            <a href="#contact" class="btn btn-secondary">Get a Custom Quote</a>
+            <h1>Professional Custom Websites for Kenyan Businesses</h1>
+            <p>We build stunning, responsive websites tailored to your business needs. From simple portfolios to complex e-commerce platforms, we've got you covered.</p>
+            <a href="#services" class="btn">View Our Services</a>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
+    <!-- Services Section -->
+    <section id="services">
         <div class="container">
             <div class="section-title">
                 <h2>Our Website Packages</h2>
-                <p>Choose from our pre-designed packages or request a fully custom solution</p>
+                <p>Choose from our range of professional website packages, all designed with Kenyan businesses in mind.</p>
             </div>
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-briefcase"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Business Website</h3>
-                        <p>Perfect for small to medium businesses looking to establish an online presence</p>
-                        <div class="product-price">$ 120</div>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> 5-7 Pages</li>
-                            <li><i class="fas fa-check"></i> Responsive Design</li>
+            
+            <div class="services-grid">
+                <!-- Service Card 1 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Basic Business Website</h3>
+                        <p>Perfect for small businesses looking to establish an online presence</p>
+                        <div class="price">KES 15,000</div>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> 5 Custom Pages</li>
+                            <li><i class="fas fa-check"></i> Mobile Responsive Design</li>
                             <li><i class="fas fa-check"></i> Contact Form</li>
-                            <li><i class="fas fa-check"></i> SEO Optimized</li>
+                            <li><i class="fas fa-check"></i> Basic SEO Setup</li>
+                            <li><i class="fas fa-check"></i> 1 Month Support</li>
                         </ul>
-                        <div class="product-actions">
-                            <button class="btn btn-outline view-details" data-product="1">View Details</button>
-                            <button class="btn add-to-cart" data-product="1">Add to Cart</button>
-                        </div>
+                        <button class="btn view-details" data-service="1">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="1" data-name="Basic Business Website" data-price="15000">Add to Cart</button>
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>E-commerce Store</h3>
-                        <p>Complete online store with product management and payment integration</p>
-                        <div class="product-price">$ 200</div>
-                        <ul class="product-features">
+                <!-- Service Card 2 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>E-commerce Website</h3>
+                        <p>Sell your products online with a fully functional online store</p>
+                        <div class="price">KES 45,000</div>
+                        <ul class="service-features">
                             <li><i class="fas fa-check"></i> Product Catalog</li>
-                            <li><i class="fas fa-check"></i> Shopping Cart</li>
-                            <li><i class="fas fa-check"></i> Payment Gateway</li>
-                            <li><i class="fas fa-check"></i> Order Management</li>
+                            <li><i class="fas fa-check"></i> Shopping Cart & Checkout</li>
+                            <li><i class="fas fa-check"></i> Payment Gateway Integration</li>
+                            <li><i class="fas fa-check"></i> Inventory Management</li>
+                            <li><i class="fas fa-check"></i> 3 Months Support</li>
                         </ul>
-                        <div class="product-actions">
-                            <button class="btn btn-outline view-details" data-product="2">View Details</button>
-                            <button class="btn add-to-cart" data-product="2">Add to Cart</button>
-                        </div>
+                        <button class="btn view-details" data-service="2">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="2" data-name="E-commerce Website" data-price="45000">Add to Cart</button>
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Portfolio Website</h3>
-                        <p>Showcase your work with a stunning portfolio website</p>
-                        <div class="product-price">$ 48</div>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> 3-5 Pages</li>
-                            <li><i class="fas fa-check"></i> Gallery/Portfolio</li>
-                            <li><i class="fas fa-check"></i> Blog Integration</li>
-                            <li><i class="fas fa-check"></i> Social Media Links</li>
+                <!-- Service Card 3 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Corporate Website</h3>
+                        <p>Professional website for established businesses and organizations</p>
+                        <div class="price">KES 30,000</div>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> 10+ Custom Pages</li>
+                            <li><i class="fas fa-check"></i> Blog/News Section</li>
+                            <li><i class="fas fa-check"></i> Team Member Profiles</li>
+                            <li><i class="fas fa-check"></i> Advanced SEO Setup</li>
+                            <li><i class="fas fa-check"></i> 2 Months Support</li>
                         </ul>
-                        <div class="product-actions">
-                            <button class="btn btn-outline view-details" data-product="3">View Details</button>
-                            <button class="btn add-to-cart" data-product="3">Add to Cart</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <div class="product-info">
-                        <h3>Custom Web Application</h3>
-                        <p>Fully custom web application tailored to your specific requirements</p>
-                        <div class="product-price">$ 130</div>
-                        <ul class="product-features">
-                            <li><i class="fas fa-check"></i> Custom Functionality</li>
-                            <li><i class="fas fa-check"></i> User Management</li>
-                            <li><i class="fas fa-check"></i> Database Integration</li>
-                            <li><i class="fas fa-check"></i> API Development</li>
-                        </ul>
-                        <div class="product-actions">
-                            <button class="btn btn-outline view-details" data-product="4">View Details</button>
-                            <button class="btn add-to-cart" data-product="4">Add to Cart</button>
-                        </div>
+                        <button class="btn view-details" data-service="3">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="3" data-name="Corporate Website" data-price="30000">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Product Detail Modals -->
-    <div id="modal-1" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Business Website Package</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <i class="fas fa-briefcase"></i>
-                </div>
-                <div class="modal-details">
-                    <h3>Perfect for small to medium businesses</h3>
-                    <p>Our Business Website package includes everything you need to establish a professional online presence and attract new customers.</p>
-                    <ul class="modal-features">
-                        <li><i class="fas fa-check"></i> 5-7 professionally designed pages</li>
-                        <li><i class="fas fa-check"></i> Fully responsive design (mobile-friendly)</li>
-                        <li><i class="fas fa-check"></i> Contact form with email integration</li>
-                        <li><i class="fas fa-check"></i> Basic SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Social media integration</li>
-                        <li><i class="fas fa-check"></i> Google Analytics setup</li>
-                        <li><i class="fas fa-check"></i> 1 year of hosting included</li>
-                        <li><i class="fas fa-check"></i> 3 months of technical support</li>
-                    </ul>
-                    <div class="modal-price">$899</div>
-                    <button class="btn add-to-cart" data-product="1">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-2" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>E-commerce Store Package</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="modal-details">
-                    <h3>Complete online store solution</h3>
-                    <p>Launch your online business with our comprehensive e-commerce package that includes everything you need to sell products online.</p>
-                    <ul class="modal-features">
-                        <li><i class="fas fa-check"></i> Product catalog with categories</li>
-                        <li><i class="fas fa-check"></i> Shopping cart and checkout</li>
-                        <li><i class="fas fa-check"></i> Multiple payment gateways</li>
-                        <li><i class="fas fa-check"></i> Order management system</li>
-                        <li><i class="fas fa-check"></i> Customer account creation</li>
-                        <li><i class="fas fa-check"></i> Inventory management</li>
-                        <li><i class="fas fa-check"></i> Shipping calculation</li>
-                        <li><i class="fas fa-check"></i> Tax configuration</li>
-                    </ul>
-                    <div class="modal-price">$1,499</div>
-                    <button class="btn add-to-cart" data-product="2">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-3" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Portfolio Website Package</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="modal-details">
-                    <h3>Showcase your work in style</h3>
-                    <p>Perfect for creatives, artists, photographers, and professionals who want to display their work with an elegant online portfolio.</p>
-                    <ul class="modal-features">
-                        <li><i class="fas fa-check"></i> 3-5 beautifully designed pages</li>
-                        <li><i class="fas fa-check"></i> Image gallery/portfolio section</li>
-                        <li><i class="fas fa-check"></i> Blog integration</li>
-                        <li><i class="fas fa-check"></i> Social media integration</li>
-                        <li><i class="fas fa-check"></i> Contact form</li>
-                        <li><i class="fas fa-check"></i> Mobile-optimized design</li>
-                        <li><i class="fas fa-check"></i> Fast loading times</li>
-                        <li><i class="fas fa-check"></i> SEO-friendly structure</li>
-                    </ul>
-                    <div class="modal-price">$699</div>
-                    <button class="btn add-to-cart" data-product="3">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-4" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <div class="modal-header">
-                <h2>Custom Web Application</h2>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="modal-details">
-                    <h3>Tailored to your specific needs</h3>
-                    <p>For businesses with unique requirements that can't be met by standard solutions. We'll work with you to build a custom web application from the ground up.</p>
-                    <ul class="modal-features">
-                        <li><i class="fas fa-check"></i> Complete custom functionality</li>
-                        <li><i class="fas fa-check"></i> User registration and management</li>
-                        <li><i class="fas fa-check"></i> Database design and integration</li>
-                        <li><i class="fas fa-check"></i> API development</li>
-                        <li><i class="fas fa-check"></i> Advanced security features</li>
-                        <li><i class="fas fa-check"></i> Scalable architecture</li>
-                        <li><i class="fas fa-check"></i> Ongoing maintenance options</li>
-                        <li><i class="fas fa-check"></i> Full documentation</li>
-                    </ul>
-                    <div class="modal-price">Starting at $2,499</div>
-                    <button class="btn add-to-cart" data-product="4">Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Cart Page -->
-    <section class="cart-page" id="cart" style="display: none;">
+    <!-- About Section -->
+    <section id="about" style="padding: 80px 0; background-color: #f5f5f5;">
         <div class="container">
             <div class="section-title">
-                <h2>Your Shopping Cart</h2>
-                <p>Review your selected packages and proceed to checkout</p>
+                <h2>Why Choose WebCraft Kenya?</h2>
+                <p>We understand the unique needs of Kenyan businesses and deliver websites that drive results.</p>
             </div>
             
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="cart-items">
-                    <!-- Cart items will be populated by JavaScript -->
-                </tbody>
-            </table>
-            
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Subtotal:</span>
-                    <span id="cart-subtotal">$0</span>
-                </div>
-                <div class="summary-row">
-                    <span>Tax (10%):</span>
-                    <span id="cart-tax">$0</span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Total:</span>
-                    <span id="cart-total">$0</span>
-                </div>
-                <button class="btn" id="checkout-btn">Proceed to Checkout</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Checkout Page -->
-    <section class="checkout-page" id="checkout" style="display: none;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Checkout</h2>
-                <p>Complete your order and provide project details</p>
-            </div>
-            
-            <div class="checkout-form">
-                <div>
-                    <h3>Project Details</h3>
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company">Company Name (Optional)</label>
-                        <input type="text" id="company" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="instructions">Project Instructions & Requirements</label>
-                        <textarea id="instructions" class="form-control" placeholder="Please provide detailed instructions about your website requirements, preferred design style, features needed, timeline, and any other relevant information..."></textarea>
-                    </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <i class="fas fa-mobile-alt" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">Mobile-First Design</h3>
+                    <p>With most Kenyans accessing the internet via mobile, we prioritize mobile-responsive designs.</p>
                 </div>
                 
-                <div>
-                    <div class="order-summary">
-                        <h3>Order Summary</h3>
-                        <ul class="order-items" id="checkout-items">
-                            <!-- Order items will be populated by JavaScript -->
-                        </ul>
-                        <div class="order-total">
-                            <span>Total:</span>
-                            <span id="checkout-total">$0</span>
-                        </div>
-                    </div>
-                    
-                    <button class="btn" id="place-order-btn" style="width: 100%; margin-top: 2rem;">Place Order</button>
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <i class="fas fa-bolt" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">Fast Loading</h3>
+                    <p>We optimize all websites for fast loading times, crucial for areas with slower internet connections.</p>
+                </div>
+                
+                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+                    <i class="fas fa-headset" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
+                    <h3 style="margin-bottom: 15px;">Local Support</h3>
+                    <p>We provide ongoing support and maintenance with understanding of local business needs.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Have questions or need a custom quote? Reach out to us!</p>
+    <section id="contact" class="contact-section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <p>Have a project in mind? Contact us today for a free consultation and quote.</p>
+                
+                <div class="contact-methods">
+                    <a href="tel:+254714227080" class="contact-btn">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://wa.me/254714227080?text=Hello%20WebCraft%20Kenya,%20I'm%20interested%20in%20your%20website%20services" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:wokabenny@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
             </div>
             
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Call Us</h4>
-                            <p>+254714520249</p>
-                            <a href="tel:+254714520249" class="btn btn-outline" style="margin-top: 10px;">Call Now</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>WhatsApp</h4>
-                            <p>+254714520249</p>
-                            <a href="https://wa.me/+254714520249" class="btn btn-outline" style="margin-top: 10px;">Message on WhatsApp</a>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email Us</h4>
-                            <p>wokabenny@gmail.com</p>
-                            <a href="mailto:wokabenny@gmail.com" class="btn btn-outline" style="margin-top: 10px;">Send Email</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h3>Send Us a Message</h3>
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="contact-name">Your Name</label>
-                            <input type="text" id="contact-name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Your Email</label>
-                            <input type="email" id="contact-email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject">Subject</label>
-                            <input type="text" id="contact-subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Your Message</label>
-                            <textarea id="contact-message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea rows="5" placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>WebCraft Pro</h3>
-                    <p>Creating exceptional custom websites that drive results for businesses of all sizes.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#products">Our Packages</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Our Services</h3>
-                    <ul>
-                        <li><a href="#">Business Websites</a></li>
-                        <li><a href="#">E-commerce Stores</a></li>
-                        <li><a href="#">Portfolio Websites</a></li>
-                        <li><a href="#">Custom Web Applications</a></li>
-                        <li><a href="#">Website Maintenance</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <ul>
-                        <li><i class="fas fa-map-marker-alt"></i> 123 Web Street, Digital City</li>
-                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
-                        <li><i class="fas fa-envelope"></i> wokabenny@gmail.com</li>
-                    </ul>
-                </div>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h4>WebCraft Kenya</h4>
+                <p>Professional website development services tailored for Kenyan businesses.</p>
             </div>
             
-            <div class="copyright">
-                <p>&copy; 2023 WebCraft Pro. All rights reserved.</p>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
+            
+            <div class="footer-col">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Business Websites</a></li>
+                    <li><a href="#">E-commerce Stores</a></li>
+                    <li><a href="#">Corporate Websites</a></li>
+                    <li><a href="#">Website Maintenance</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul>
+                    <li><i class="fas fa-phone"></i> 0714 227 080</li>
+                    <li><i class="fas fa-envelope"></i> wokabenny@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 WebCraft Kenya. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-container">
+            <div class="cart-header">
+                <h2>Your Cart</h2>
+                <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+            </div>
+            
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">KES 0</span>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="btn" id="continueShopping">Continue Shopping</button>
+                <a href="checkout.html" class="btn btn-accent">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Detail Modals -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-header">
+                <h2 id="modalTitle">Service Details</h2>
+            </div>
+            
+            <div class="modal-content" id="modalContent">
+                <!-- Modal content will be added here dynamically -->
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Product data
-        const products = {
+        // Service details data
+        const serviceDetails = {
             1: {
-                name: "Business Website",
-                price: 899,
-                description: "Perfect for small to medium businesses looking to establish an online presence"
+                title: "Basic Business Website",
+                description: "Perfect for small businesses, startups, and individuals looking to establish an online presence with a professional website.",
+                price: "KES 15,000",
+                features: [
+                    "5 custom designed pages (Home, About, Services, Contact, Blog)",
+                    "Fully responsive design (works on all devices)",
+                    "Contact form with email functionality",
+                    "Basic SEO optimization",
+                    "Social media integration",
+                    "1 month of free support and maintenance",
+                    "Domain and hosting guidance",
+                    "Training on how to update content"
+                ],
+                timeline: "7-10 business days",
+                image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             2: {
-                name: "E-commerce Store",
-                price: 1499,
-                description: "Complete online store with product management and payment integration"
+                title: "E-commerce Website",
+                description: "Complete online store solution with product management, shopping cart, and secure payment processing.",
+                price: "KES 45,000",
+                features: [
+                    "Unlimited product pages with categories",
+                    "Shopping cart and secure checkout",
+                    "MPesa and credit card payment integration",
+                    "Inventory management system",
+                    "Customer account creation",
+                    "Order tracking and management",
+                    "Email notifications",
+                    "3 months of free support and maintenance",
+                    "Basic SEO optimization",
+                    "Social media integration"
+                ],
+                timeline: "3-4 weeks",
+                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             },
             3: {
-                name: "Portfolio Website",
-                price: 699,
-                description: "Showcase your work with a stunning portfolio website"
-            },
-            4: {
-                name: "Custom Web Application",
-                price: 2499,
-                description: "Fully custom web application tailored to your specific requirements"
+                title: "Corporate Website",
+                description: "Professional website for established businesses, organizations, and institutions requiring multiple pages and advanced features.",
+                price: "KES 30,000",
+                features: [
+                    "10+ custom designed pages",
+                    "Blog/news section with categories",
+                    "Team member profiles",
+                    "Advanced contact forms",
+                    "Image galleries and sliders",
+                    "Advanced SEO optimization",
+                    "Social media integration",
+                    "Newsletter subscription",
+                    "2 months of free support and maintenance",
+                    "Content management system training"
+                ],
+                timeline: "2-3 weeks",
+                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         };
 
         // Cart functionality
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // DOM Elements
+        const cartIcon = document.getElementById('cartIcon');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
         const cartCount = document.querySelector('.cart-count');
-        const cartItems = document.getElementById('cart-items');
-        const cartSubtotal = document.getElementById('cart-subtotal');
-        const cartTax = document.getElementById('cart-tax');
-        const cartTotal = document.getElementById('cart-total');
-        const checkoutItems = document.getElementById('checkout-items');
-        const checkoutTotal = document.getElementById('checkout-total');
-
-        // Update cart count
-        function updateCartCount() {
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = count;
-        }
+        const continueShopping = document.getElementById('continueShopping');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const viewDetailsButtons = document.querySelectorAll('.view-details');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModal = document.getElementById('closeModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const contactForm = document.getElementById('contactForm');
 
         // Update cart display
-        function updateCartDisplay() {
+        function updateCart() {
+            // Update cart count
+            cartCount.textContent = cart.length;
+            
+            // Update cart items
             cartItems.innerHTML = '';
-            let subtotal = 0;
-            
-            cart.forEach((item, index) => {
-                const product = products[item.id];
-                const itemTotal = product.price * item.quantity;
-                subtotal += itemTotal;
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>
-                        <div style="display: flex; align-items: center;">
-                            <div class="cart-item-image">
-                                <i class="fas fa-${item.id === 1 ? 'briefcase' : item.id === 2 ? 'shopping-cart' : item.id === 3 ? 'mobile-alt' : 'rocket'}"></i>
-                            </div>
-                            <div style="margin-left: 10px;">
-                                <strong>${product.name}</strong><br>
-                                <small>${product.description}</small>
-                            </div>
-                        </div>
-                    </td>
-                    <td>$${product.price}</td>
-                    <td>
-                        <div class="quantity-control">
-                            <button class="quantity-btn decrease-quantity" data-index="${index}">-</button>
-                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-index="${index}">
-                            <button class="quantity-btn increase-quantity" data-index="${index}">+</button>
-                        </div>
-                    </td>
-                    <td>$${itemTotal}</td>
-                    <td><i class="fas fa-trash remove-item" data-index="${index}"></i></td>
-                `;
-                cartItems.appendChild(row);
-            });
-            
-            const tax = subtotal * 0.1;
-            const total = subtotal + tax;
-            
-            cartSubtotal.textContent = `$${subtotal}`;
-            cartTax.textContent = `$${tax.toFixed(2)}`;
-            cartTotal.textContent = `$${total.toFixed(2)}`;
-            
-            updateCheckoutDisplay(subtotal, tax, total);
-            updateCartCount();
-            localStorage.setItem('cart', JSON.stringify(cart));
-        }
-
-        // Update checkout display
-        function updateCheckoutDisplay(subtotal, tax, total) {
-            checkoutItems.innerHTML = '';
+            let total = 0;
             
             cart.forEach(item => {
-                const product = products[item.id];
-                const itemTotal = product.price * item.quantity;
-                
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span>${product.name} x${item.quantity}</span>
-                    <span>$${itemTotal}</span>
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <div class="cart-item-price">${formatPrice(item.price)}</div>
+                    </div>
+                    <button class="cart-item-remove" data-id="${item.id}">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 `;
-                checkoutItems.appendChild(li);
+                cartItems.appendChild(itemElement);
+                total += item.price;
             });
             
-            checkoutTotal.textContent = `$${total.toFixed(2)}`;
+            // Update total
+            cartTotal.textContent = formatPrice(total);
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.cart-item-remove').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    removeFromCart(id);
+                });
+            });
         }
-
+        
+        // Format price as KES
+        function formatPrice(price) {
+            return `KES ${price.toLocaleString()}`;
+        }
+        
         // Add to cart
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product');
-                const existingItem = cart.find(item => item.id == productId);
-                
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        id: parseInt(productId),
-                        quantity: 1
-                    });
-                }
-                
-                updateCartDisplay();
-                alert('Product added to cart!');
-            });
-        });
-
-        // View product details
-        document.querySelectorAll('.view-details').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product');
-                const modal = document.getElementById(`modal-${productId}`);
-                modal.style.display = 'flex';
-            });
-        });
-
-        // Close modal
-        document.querySelectorAll('.close-modal').forEach(button => {
-            button.addEventListener('click', function() {
-                this.closest('.modal').style.display = 'none';
-            });
-        });
-
-        // Close modal when clicking outside
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        });
-
-        // Cart page navigation
-        document.querySelector('.cart-icon').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('cart').style.display = 'block';
-            document.getElementById('checkout').style.display = 'none';
-            updateCartDisplay();
-        });
-
-        // Checkout page navigation
-        document.getElementById('checkout-btn').addEventListener('click', function() {
-            document.getElementById('products').style.display = 'none';
-            document.getElementById('cart').style.display = 'none';
-            document.getElementById('checkout').style.display = 'block';
-        });
-
-        // Quantity controls
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('increase-quantity')) {
-                const index = e.target.getAttribute('data-index');
-                cart[index].quantity += 1;
-                updateCartDisplay();
-            }
+        function addToCart(id, name, price) {
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.id === id);
             
-            if (e.target.classList.contains('decrease-quantity')) {
-                const index = e.target.getAttribute('data-index');
-                if (cart[index].quantity > 1) {
-                    cart[index].quantity -= 1;
-                    updateCartDisplay();
-                }
-            }
-            
-            if (e.target.classList.contains('remove-item')) {
-                const index = e.target.getAttribute('data-index');
-                cart.splice(index, 1);
-                updateCartDisplay();
-            }
-        });
-
-        // Quantity input change
-        document.addEventListener('change', function(e) {
-            if (e.target.classList.contains('quantity-input')) {
-                const index = e.target.getAttribute('data-index');
-                const newQuantity = parseInt(e.target.value);
-                
-                if (newQuantity > 0) {
-                    cart[index].quantity = newQuantity;
-                    updateCartDisplay();
-                } else {
-                    e.target.value = cart[index].quantity;
-                }
-            }
-        });
-
-        // Place order
-        document.getElementById('place-order-btn').addEventListener('click', function() {
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const company = document.getElementById('company').value;
-            const instructions = document.getElementById('instructions').value;
-            
-            if (!name || !email || !phone || !instructions) {
-                alert('Please fill in all required fields');
+            if (existingItem) {
+                alert('This item is already in your cart.');
                 return;
             }
             
-            // Format WhatsApp message
-            let message = `New Website Order:\n\n`;
-            message += `Customer: ${name}\n`;
-            message += `Email: ${email}\n`;
-            message += `Phone: ${phone}\n`;
-            if (company) message += `Company: ${company}\n`;
-            message += `\nOrder Details:\n`;
+            // Add to cart
+            cart.push({ id, name, price: parseInt(price) });
+            updateCart();
             
-            cart.forEach(item => {
-                const product = products[item.id];
-                message += `- ${product.name} x${item.quantity}: $${product.price * item.quantity}\n`;
+            // Show confirmation
+            alert(`${name} has been added to your cart.`);
+        }
+        
+        // Remove from cart
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+        
+        // Show service details modal
+        function showServiceDetails(serviceId) {
+            const service = serviceDetails[serviceId];
+            
+            if (!service) return;
+            
+            modalTitle.textContent = service.title;
+            
+            modalContent.innerHTML = `
+                <div>
+                    <img src="${service.image}" alt="${service.title}" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+                    <p>${service.description}</p>
+                    <div class="price" style="font-size: 1.8rem; margin: 20px 0;">${service.price}</div>
+                    <button class="btn btn-accent add-to-cart" data-id="${serviceId}" data-name="${service.title}" data-price="${service.price.replace(/\D/g, '')}">Add to Cart</button>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 15px;">Features</h3>
+                    <ul class="modal-features">
+                        ${service.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+                    </ul>
+                    <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 5px;">
+                        <strong>Estimated Delivery:</strong> ${service.timeline}
+                    </div>
+                </div>
+            `;
+            
+            modalOverlay.style.display = 'flex';
+            
+            // Add event listener to the add to cart button in the modal
+            const modalAddToCart = modalContent.querySelector('.add-to-cart');
+            if (modalAddToCart) {
+                modalAddToCart.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const name = this.getAttribute('data-name');
+                    const price = this.getAttribute('data-price');
+                    addToCart(id, name, price);
+                    modalOverlay.style.display = 'none';
+                });
+            }
+        }
+        
+        // Event Listeners
+        cartIcon.addEventListener('click', function() {
+            cartOverlay.style.display = 'flex';
+        });
+        
+        closeCart.addEventListener('click', function() {
+            cartOverlay.style.display = 'none';
+        });
+        
+        continueShopping.addEventListener('click', function() {
+            cartOverlay.style.display = 'none';
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modalOverlay.style.display = 'none';
+        });
+        
+        // Add to cart buttons
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = this.getAttribute('data-price');
+                addToCart(id, name, price);
             });
-            
-            const subtotal = cart.reduce((total, item) => total + (products[item.id].price * item.quantity), 0);
-            const tax = subtotal * 0.1;
-            const total = subtotal + tax;
-            
-            message += `\nSubtotal: $${subtotal}\n`;
-            message += `Tax: $${tax.toFixed(2)}\n`;
-            message += `Total: $${total.toFixed(2)}\n\n`;
-            message += `Project Instructions:\n${instructions}`;
-            
-            // Encode message for URL
-            const encodedMessage = encodeURIComponent(message);
-            
-            // Redirect to WhatsApp with the order details
-            window.location.href = `https://wa.me/0714227080?text=${encodedMessage}`;
         });
-
+        
+        // View details buttons
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const serviceId = this.getAttribute('data-service');
+                showServiceDetails(serviceId);
+            });
+        });
+        
         // Contact form submission
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('contact-name').value;
-            const email = document.getElementById('contact-email').value;
-            const subject = document.getElementById('contact-subject').value;
-            const message = document.getElementById('contact-message').value;
-            
-            // In a real implementation, you would send this data to your server
-            // For this demo, we'll just show a success message
-            alert(`Thank you for your message, ${name}! We'll get back to you soon.`);
-            
-            // Reset form
-            this.reset();
-        });
-
-        // Initialize
-        updateCartCount();
-        updateCartDisplay();
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+        
+        // Initialize cart on page load
+        updateCart();
     </script>
 </body>
-
 </html>
