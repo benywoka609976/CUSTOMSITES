@@ -337,7 +337,7 @@
             background-color: white;
             width: 90%;
             max-width: 700px;
-            border-radius: 10px;
+            border-radius:-10px;
             padding: 30px;
             max-height: 90vh;
             overflow-y: auto;
@@ -1077,14 +1077,6 @@
             
             // Save to localStorage
             localStorage.setItem('cart', JSON.stringify(cart));
-            
-            // Add event listeners to remove buttons
-            document.querySelectorAll('.cart-item-remove').forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    removeFromCart(id);
-                });
-            });
         }
         
         // Format price as KES
@@ -1129,7 +1121,7 @@
                     <img src="${service.image}" alt="${service.title}" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
                     <p>${service.description}</p>
                     <div class="price" style="font-size: 1.8rem; margin: 20px 0;">${service.price}</div>
-                    <button class="btn btn-accent add-to-cart" data-id="${serviceId}" data-name="${service.title}" data-price="${service.price.replace(/\D/g, '')}">Add to Cart</button>
+                    <button class="btn btn-accent add-to-cart-modal" data-id="${serviceId}" data-name="${service.title}" data-price="${service.price.replace(/\D/g, '')}">Add to Cart</button>
                 </div>
                 <div>
                     <h3 style="margin-bottom: 15px;">Features</h3>
@@ -1143,18 +1135,6 @@
             `;
             
             modalOverlay.style.display = 'flex';
-            
-            // Add event listener to the add to cart button in the modal
-            const modalAddToCart = modalContent.querySelector('.add-to-cart');
-            if (modalAddToCart) {
-                modalAddToCart.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const name = this.getAttribute('data-name');
-                    const price = this.getAttribute('data-price');
-                    addToCart(id, name, price);
-                    modalOverlay.style.display = 'none';
-                });
-            }
         }
         
         // Show checkout modal
@@ -1289,9 +1269,27 @@
             });
         }
         
+        // Event delegation for dynamic elements
+        document.addEventListener('click', function(e) {
+            // Handle remove from cart buttons
+            if (e.target.closest('.cart-item-remove')) {
+                const id = e.target.closest('.cart-item-remove').getAttribute('data-id');
+                removeFromCart(id);
+            }
+            
+            // Handle add to cart buttons in modals
+            if (e.target.closest('.add-to-cart-modal')) {
+                const button = e.target.closest('.add-to-cart-modal');
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = button.getAttribute('data-price');
+                addToCart(id, name, price);
+                modalOverlay.style.display = 'none';
+            }
+        });
+        
         // Initialize cart on page load
         updateCart();
     </script>
 </body>
 </html>
-
