@@ -666,6 +666,63 @@
                         <button class="btn btn-accent add-to-cart" data-id="3" data-name="Corporate Website" data-price="30000">Add to Cart</button>
                     </div>
                 </div>
+                
+                <!-- Service Card 4 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Portfolio Website</h3>
+                        <p>Showcase your work with a stunning portfolio website</p>
+                        <div class="price">KES 20,000</div>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Gallery/Portfolio Section</li>
+                            <li><i class="fas fa-check"></i> Project Showcase Pages</li>
+                            <li><i class="fas fa-check"></i> Client Testimonials</li>
+                            <li><i class="fas fa-check"></i> Contact Form</li>
+                            <li><i class="fas fa-check"></i> 1 Month Support</li>
+                        </ul>
+                        <button class="btn view-details" data-service="4">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="4" data-name="Portfolio Website" data-price="20000">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 5 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Blog/News Website</h3>
+                        <p>Share your content with a professional blog or news site</p>
+                        <div class="price">KES 25,000</div>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Blog/News Management</li>
+                            <li><i class="fas fa-check"></i> Category & Tag System</li>
+                            <li><i class="fas fa-check"></i> Comment System</li>
+                            <li><i class="fas fa-check"></i> Newsletter Integration</li>
+                            <li><i class="fas fa-check"></i> 2 Months Support</li>
+                        </ul>
+                        <button class="btn view-details" data-service="5">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="5" data-name="Blog/News Website" data-price="25000">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <!-- Service Card 6 -->
+                <div class="service-card">
+                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="service-content">
+                        <h3>Custom Web Application</h3>
+                        <p>Build a custom web application for your unique business needs</p>
+                        <div class="price">KES 75,000+</div>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Custom Functionality</li>
+                            <li><i class="fas fa-check"></i> User Management System</li>
+                            <li><i class="fas fa-check"></i> Database Integration</li>
+                            <li><i class="fas fa-check"></i> API Development</li>
+                            <li><i class="fas fa-check"></i> 6 Months Support</li>
+                        </ul>
+                        <button class="btn view-details" data-service="6">View Details</button>
+                        <button class="btn btn-accent add-to-cart" data-id="6" data-name="Custom Web Application" data-price="75000">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -708,10 +765,10 @@
                 <p>Have a project in mind? Contact us today for a free consultation and quote.</p>
                 
                 <div class="contact-methods">
-                    <a href="tel:+254714227080" class="contact-btn">
+                    <a href="tel:+254714520249" class="contact-btn">
                         <i class="fas fa-phone"></i>
                     </a>
-                    <a href="https://wa.me/254714227080?text=Hello%20WebCraft%20Kenya,%20I'm%20interested%20in%20your%20website%20services" class="contact-btn whatsapp" target="_blank">
+                    <a href="https://wa.me/254714520249?text=Hello%20WebCraft%20Kenya,%20I'm%20interested%20in%20your%20website%20services" class="contact-btn whatsapp" target="_blank">
                         <i class="fab fa-whatsapp"></i>
                     </a>
                     <a href="mailto:wokabenny@gmail.com" class="contact-btn email">
@@ -763,7 +820,7 @@
             <div class="footer-col">
                 <h4>Contact Info</h4>
                 <ul>
-                    <li><i class="fas fa-phone"></i> 0714 227 080</li>
+                    <li><i class="fas fa-phone"></i> 0714 520 249</li>
                     <li><i class="fas fa-envelope"></i> wokabenny@gmail.com</li>
                     <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
                 </ul>
@@ -794,7 +851,42 @@
             
             <div class="cart-actions">
                 <button class="btn" id="continueShopping">Continue Shopping</button>
-                <a href="checkout.html" class="btn btn-accent">Proceed to Checkout</a>
+                <button class="btn btn-accent" id="proceedToCheckout">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal-overlay" id="checkoutModal">
+        <div class="modal">
+            <button class="close-modal" id="closeCheckoutModal"><i class="fas fa-times"></i></button>
+            
+            <div class="modal-header">
+                <h2>Checkout</h2>
+            </div>
+            
+            <div class="checkout-grid">
+                <div class="checkout-form">
+                    <h3>Customer Information</h3>
+                    <form id="checkoutForm">
+                        <input type="text" id="customerName" placeholder="Full Name" required>
+                        <input type="email" id="customerEmail" placeholder="Email Address" required>
+                        <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+                        <textarea id="customerInstructions" placeholder="Special instructions for your website..." rows="4"></textarea>
+                    </form>
+                </div>
+                
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutItems">
+                        <!-- Order items will be added here dynamically -->
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">KES 0</span>
+                    </div>
+                    <button class="btn btn-accent" id="placeOrderBtn" style="width: 100%; margin-top: 20px;">Place Order</button>
+                </div>
             </div>
         </div>
     </div>
@@ -871,6 +963,57 @@
                 ],
                 timeline: "2-3 weeks",
                 image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            4: {
+                title: "Portfolio Website",
+                description: "Showcase your work, projects, or creative endeavors with a visually appealing portfolio website.",
+                price: "KES 20,000",
+                features: [
+                    "Custom portfolio/gallery layout",
+                    "Project showcase with detailed pages",
+                    "Client testimonials section",
+                    "Contact form with file upload",
+                    "Social media integration",
+                    "1 month of free support and maintenance",
+                    "Basic SEO optimization",
+                    "Mobile-responsive design"
+                ],
+                timeline: "7-10 business days",
+                image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            5: {
+                title: "Blog/News Website",
+                description: "Share your thoughts, news, or articles with a professional blog or news website.",
+                price: "KES 25,000",
+                features: [
+                    "Blog/news management system",
+                    "Category and tag organization",
+                    "Comment system for engagement",
+                    "Newsletter subscription integration",
+                    "Author profiles and management",
+                    "2 months of free support and maintenance",
+                    "SEO optimized for content",
+                    "Social sharing capabilities"
+                ],
+                timeline: "10-14 business days",
+                image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+            },
+            6: {
+                title: "Custom Web Application",
+                description: "Build a custom web application tailored to your specific business needs and workflows.",
+                price: "KES 75,000+",
+                features: [
+                    "Custom functionality development",
+                    "User authentication and management",
+                    "Database design and integration",
+                    "API development and integration",
+                    "Advanced security features",
+                    "6 months of free support and maintenance",
+                    "Scalable architecture",
+                    "Performance optimization"
+                ],
+                timeline: "4-8 weeks (depending on complexity)",
+                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
             }
         };
 
@@ -885,6 +1028,7 @@
         const cartTotal = document.getElementById('cartTotal');
         const cartCount = document.querySelector('.cart-count');
         const continueShopping = document.getElementById('continueShopping');
+        const proceedToCheckout = document.getElementById('proceedToCheckout');
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
         const viewDetailsButtons = document.querySelectorAll('.view-details');
         const modalOverlay = document.getElementById('modalOverlay');
@@ -892,6 +1036,12 @@
         const modalTitle = document.getElementById('modalTitle');
         const modalContent = document.getElementById('modalContent');
         const contactForm = document.getElementById('contactForm');
+        const checkoutModal = document.getElementById('checkoutModal');
+        const closeCheckoutModal = document.getElementById('closeCheckoutModal');
+        const checkoutItems = document.getElementById('checkoutItems');
+        const checkoutTotal = document.getElementById('checkoutTotal');
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        const checkoutForm = document.getElementById('checkoutForm');
 
         // Update cart display
         function updateCart() {
@@ -902,21 +1052,25 @@
             cartItems.innerHTML = '';
             let total = 0;
             
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'cart-item';
-                itemElement.innerHTML = `
-                    <div class="cart-item-details">
-                        <h4>${item.name}</h4>
-                        <div class="cart-item-price">${formatPrice(item.price)}</div>
-                    </div>
-                    <button class="cart-item-remove" data-id="${item.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                cartItems.appendChild(itemElement);
-                total += item.price;
-            });
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p>Your cart is empty</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div class="cart-item-details">
+                            <h4>${item.name}</h4>
+                            <div class="cart-item-price">${formatPrice(item.price)}</div>
+                        </div>
+                        <button class="cart-item-remove" data-id="${item.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(itemElement);
+                    total += item.price;
+                });
+            }
             
             // Update total
             cartTotal.textContent = formatPrice(total);
@@ -1003,6 +1157,86 @@
             }
         }
         
+        // Show checkout modal
+        function showCheckoutModal() {
+            if (cart.length === 0) {
+                alert('Your cart is empty. Please add items to your cart before proceeding to checkout.');
+                return;
+            }
+            
+            // Update checkout items
+            checkoutItems.innerHTML = '';
+            let total = 0;
+            
+            cart.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'summary-item';
+                itemElement.innerHTML = `
+                    <span>${item.name}</span>
+                    <span>${formatPrice(item.price)}</span>
+                `;
+                checkoutItems.appendChild(itemElement);
+                total += item.price;
+            });
+            
+            // Update checkout total
+            checkoutTotal.textContent = formatPrice(total);
+            
+            // Show checkout modal
+            cartOverlay.style.display = 'none';
+            checkoutModal.style.display = 'flex';
+        }
+        
+        // Place order function
+        function placeOrder() {
+            const name = document.getElementById('customerName').value;
+            const email = document.getElementById('customerEmail').value;
+            const phone = document.getElementById('customerPhone').value;
+            const instructions = document.getElementById('customerInstructions').value;
+            
+            if (!name || !email || !phone) {
+                alert('Please fill in all required fields: Name, Email, and Phone Number.');
+                return;
+            }
+            
+            // Create order summary for WhatsApp message
+            let orderSummary = `*NEW WEBSITE ORDER*\n\n`;
+            orderSummary += `*Customer Details:*\n`;
+            orderSummary += `Name: ${name}\n`;
+            orderSummary += `Email: ${email}\n`;
+            orderSummary += `Phone: ${phone}\n\n`;
+            
+            orderSummary += `*Order Items:*\n`;
+            let total = 0;
+            cart.forEach(item => {
+                orderSummary += `- ${item.name}: ${formatPrice(item.price)}\n`;
+                total += item.price;
+            });
+            
+            orderSummary += `\n*Total: ${formatPrice(total)}*\n\n`;
+            
+            if (instructions) {
+                orderSummary += `*Special Instructions:*\n${instructions}\n\n`;
+            }
+            
+            orderSummary += `Order placed on: ${new Date().toLocaleString()}`;
+            
+            // Encode the message for WhatsApp URL
+            const encodedMessage = encodeURIComponent(orderSummary);
+            
+            // Redirect to WhatsApp with the order details
+            window.open(`https://wa.me/254714520249?text=${encodedMessage}`, '_blank');
+            
+            // Clear cart and close modals
+            cart = [];
+            updateCart();
+            checkoutModal.style.display = 'none';
+            checkoutForm.reset();
+            
+            // Show confirmation
+            alert('Thank you for your order! You will be redirected to WhatsApp to confirm your order details.');
+        }
+        
         // Event Listeners
         cartIcon.addEventListener('click', function() {
             cartOverlay.style.display = 'flex';
@@ -1016,9 +1250,17 @@
             cartOverlay.style.display = 'none';
         });
         
+        proceedToCheckout.addEventListener('click', showCheckoutModal);
+        
         closeModal.addEventListener('click', function() {
             modalOverlay.style.display = 'none';
         });
+        
+        closeCheckoutModal.addEventListener('click', function() {
+            checkoutModal.style.display = 'none';
+        });
+        
+        placeOrderBtn.addEventListener('click', placeOrder);
         
         // Add to cart buttons
         addToCartButtons.forEach(button => {
