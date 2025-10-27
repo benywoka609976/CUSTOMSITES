@@ -3,1464 +3,393 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebCraft Kenya | Custom Website Development</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Stellar Web Solutions - Custom Websites, Made in Kenya</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for custom font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-blue': '#1e40af', // Deep blue for primary actions
+                        'secondary-yellow': '#fbbf24', // Yellow accent
+                        'surface-light': '#f9fafb',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Base Styles */
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-        }
-       
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-       
+        /* Custom styles for sophistication and mobile-friendliness */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
         body {
-            background-color: #f9f9f9;
-            color: #333;
-            line-height: 1.6;
-        }
-       
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-       
-        /* Header Styles */
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-       
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-       
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-        }
-       
-        .logo span {
-            color: var(--secondary);
-        }
-       
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-       
-        nav ul li {
-            margin-left: 25px;
-        }
-       
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-       
-        nav ul li a:hover {
-            color: var(--secondary);
-        }
-       
-        .cart-icon {
-            position: relative;
-            cursor: pointer;
-        }
-       
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-        }
-       
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-       
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-       
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-       
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-       
-        .btn:hover {
-            background-color: #2980b9;
-        }
-       
-        .btn-accent {
-            background-color: var(--accent);
-        }
-       
-        .btn-accent:hover {
-            background-color: #c0392b;
-        }
-       
-        /* Services Section */
-        .section-title {
-            text-align: center;
-            margin: 60px 0 40px;
-            color: var(--primary);
-        }
-       
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-       
-        .section-title p {
-            max-width: 700px;
-            margin: 0 auto;
-            color: #666;
-        }
-       
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 60px;
-        }
-       
-        .service-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-       
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-       
-        .service-img {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-       
-        .service-content {
-            padding: 25px;
-        }
-       
-        .service-content h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-       
-        .service-content p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-       
-        .price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-       
-        .service-features {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-       
-        .service-features li {
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-       
-        .service-features li i {
-            color: var(--success);
-            margin-right: 10px;
-        }
-       
-        /* Cart Styles */
-        .cart-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-       
-        .cart-container {
-            background-color: white;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 10px;
-            padding: 30px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-       
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-       
-        .cart-header h2 {
-            color: var(--primary);
-        }
-       
-        .close-cart {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #777;
-        }
-       
-        .cart-items {
-            margin-bottom: 30px;
-        }
-       
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-       
-        .cart-item-details h4 {
-            margin-bottom: 5px;
-        }
-       
-        .cart-item-price {
-            color: var(--accent);
-            font-weight: 600;
-        }
-       
-        .cart-item-remove {
-            background: none;
-            border: none;
-            color: var(--accent);
-            cursor: pointer;
-        }
-       
-        .cart-total {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.2rem;
-            font-weight: 700;
-            padding: 15px 0;
-            border-top: 2px solid #eee;
-        }
-       
-        .cart-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-       
-        /* Modal Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-       
-        .modal {
-            background-color: white;
-            width: 90%;
-            max-width: 600px;
-            border-radius: 10px;
-            padding: 20px;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-        }
-       
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #777;
-        }
-       
-        .modal-header {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-       
-        .modal-header h2 {
-            color: var(--primary);
-        }
-       
-        .modal-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-       
-        .modal-features {
-            list-style: none;
-        }
-       
-        .modal-features li {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-       
-        .modal-features li i {
-            color: var(--success);
-            margin-right: 10px;
-        }
-       
-        /* Contact Section */
-        .contact-section {
-            background-color: var(--primary);
-            color: white;
-            padding: 80px 0;
-        }
-       
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-       
-        .contact-info h3 {
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-       
-        .contact-info p {
-            margin-bottom: 30px;
-        }
-       
-        .contact-methods {
-            display: flex;
-            gap: 15px;
-        }
-       
-        .contact-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--secondary);
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            transition: transform 0.3s;
-        }
-       
-        .contact-btn:hover {
-            transform: translateY(-5px);
-        }
-       
-        .contact-btn.whatsapp {
-            background-color: #25D366;
-        }
-       
-        .contact-btn.email {
-            background-color: var(--accent);
-        }
-       
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-        }
-       
-        .contact-form input::placeholder,
-        .contact-form textarea::placeholder {
-            color: rgba(255,255,255,0.7);
-        }
-       
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-       
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-       
-        .footer-col h4 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-       
-        .footer-col ul {
-            list-style: none;
-        }
-       
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-       
-        .footer-col ul li a {
-            color: #bbb;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-       
-        .footer-col ul li a:hover {
-            color: var(--secondary);
-        }
-       
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #bbb;
-            font-size: 0.9rem;
-        }
-       
-        /* Checkout Page Styles */
-        .checkout-container {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-       
-        .checkout-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-       
-        .checkout-form input,
-        .checkout-form textarea,
-        .checkout-form select {
-            width: 100%;
-            padding: 10px 12px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-       
-        .order-summary {
-            background-color: #f5f5f5;
-            padding: 20px;
-            border-radius: 10px;
-        }
-       
-        .order-summary h3 {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-       
-        .summary-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-       
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            font-weight: 700;
-            font-size: 1.2rem;
-            padding-top: 10px;
-            border-top: 2px solid #ddd;
-        }
-       
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-            }
-           
-            nav ul {
-                margin-top: 15px;
-            }
-           
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-           
-            .modal-content {
-                grid-template-columns: 1fr;
-            }
-           
-            .checkout-grid {
-                grid-template-columns: 1fr;
-            }
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        /* Style for the fixed contact/cart buttons on mobile */
+        .mobile-fixed-bar {
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        /* Custom scrollbar for cart */
+        #cart-items-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #cart-items-container::-webkit-scrollbar-thumb {
+            background: #9ca3af;
+            border-radius: 4px;
+        }
+        #cart-items-container::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">Web<span>Craft</span> Kenya</a>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li class="cart-icon" id="cartIcon">
-                        <i class="fas fa-shopping-cart"></i>
-                        <span class="cart-count">0</span>
-                    </li>
-                </ul>
-            </nav>
+<body class="antialiased">
+
+    <!-- Header & Fixed Contact Bar -->
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-3xl font-extrabold text-primary-blue tracking-tighter">
+                <span class="text-secondary-yellow">STELLAR</span> WEB
+            </h1>
+            
+            <!-- Desktop Contact Actions -->
+            <div class="hidden md:flex space-x-4">
+                <a href="tel:0714520249" class="p-2.5 rounded-full bg-green-600 text-white hover:bg-green-700 transition duration-300 shadow-md flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    Call Now (0714520249)
+                </a>
+                <a href="mailto:hello@stellarwebs.co.ke?subject=Inquiry%20About%20Custom%20Website" class="p-2.5 rounded-full bg-primary-blue text-white hover:bg-blue-800 transition duration-300 shadow-md flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 13h9a2 2 0 002-2V7a2 2 0 00-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    Email Us
+                </a>
+            </div>
+
+            <!-- Cart Toggle for Mobile/Desktop -->
+            <button id="toggle-cart-btn" class="relative p-2.5 rounded-full bg-secondary-yellow text-primary-blue hover:bg-yellow-400 transition duration-300 shadow-lg md:ml-4">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                <span id="cart-count" class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">0</span>
+            </button>
         </div>
     </header>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Professional Custom Websites for Kenyan Businesses</h1>
-            <p>We build stunning, responsive websites tailored to your business needs. From simple portfolios to complex e-commerce platforms, we've got you covered.</p>
-            <a href="#services" class="btn">View Our Services</a>
-        </div>
-    </section>
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Website Packages</h2>
-                <p>Choose from our range of professional website packages, all designed with Kenyan businesses in mind.</p>
-            </div>
-           
-            <div class="services-grid">
-                <!-- Service Card 1 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Basic Business Website</h3>
-                        <p>Perfect for small businesses looking to establish an online presence</p>
-                        <div class="price">KES 15,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> 5 Custom Pages</li>
-                            <li><i class="fas fa-check"></i> Mobile Responsive Design</li>
-                            <li><i class="fas fa-check"></i> Contact Form</li>
-                            <li><i class="fas fa-check"></i> Basic SEO Setup</li>
-                            <li><i class="fas fa-check"></i> 1 Month Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="1">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="1" data-name="Basic Business Website" data-price="15000">Add to Cart</button>
-                    </div>
-                </div>
-               
-                <!-- Service Card 2 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>E-commerce Website</h3>
-                        <p>Sell your products online with a fully functional online store</p>
-                        <div class="price">KES 45,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Product Catalog</li>
-                            <li><i class="fas fa-check"></i> Shopping Cart & Checkout</li>
-                            <li><i class="fas fa-check"></i> Payment Gateway Integration</li>
-                            <li><i class="fas fa-check"></i> Inventory Management</li>
-                            <li><i class="fas fa-check"></i> 3 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="2">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="2" data-name="E-commerce Website" data-price="45000">Add to Cart</button>
-                    </div>
-                </div>
-               
-                <!-- Service Card 3 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Corporate Website</h3>
-                        <p>Professional website for established businesses and organizations</p>
-                        <div class="price">KES 30,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> 10+ Custom Pages</li>
-                            <li><i class="fas fa-check"></i> Blog/News Section</li>
-                            <li><i class="fas fa-check"></i> Team Member Profiles</li>
-                            <li><i class="fas fa-check"></i> Advanced SEO Setup</li>
-                            <li><i class="fas fa-check"></i> 2 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="3">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="3" data-name="Corporate Website" data-price="30000">Add to Cart</button>
-                    </div>
-                </div>
-               
-                <!-- Service Card 4 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Portfolio Website</h3>
-                        <p>Showcase your work with a stunning portfolio website</p>
-                        <div class="price">KES 20,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Gallery/Portfolio Section</li>
-                            <li><i class="fas fa-check"></i> Project Showcase Pages</li>
-                            <li><i class="fas fa-check"></i> Client Testimonials</li>
-                            <li><i class="fas fa-check"></i> Contact Form</li>
-                            <li><i class="fas fa-check"></i> 1 Month Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="4">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="4" data-name="Portfolio Website" data-price="20000">Add to Cart</button>
-                    </div>
-                </div>
-               
-                <!-- Service Card 5 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Blog/News Website</h3>
-                        <p>Share your content with a professional blog or news site</p>
-                        <div class="price">KES 25,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Blog/News Management</li>
-                            <li><i class="fas fa-check"></i> Category & Tag System</li>
-                            <li><i class="fas fa-check"></i> Comment System</li>
-                            <li><i class="fas fa-check"></i> Newsletter Integration</li>
-                            <li><i class="fas fa-check"></i> 2 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="5">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="5" data-name="Blog/News Website" data-price="25000">Add to Cart</button>
-                    </div>
-                </div>
-               
-                <!-- Service Card 6 -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Custom Web Application</h3>
-                        <p>Build a custom web application for your unique business needs</p>
-                        <div class="price">KES 75,000+</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Custom Functionality</li>
-                            <li><i class="fas fa-check"></i> User Management System</li>
-                            <li><i class="fas fa-check"></i> Database Integration</li>
-                            <li><i class="fas fa-check"></i> API Development</li>
-                            <li><i class="fas fa-check"></i> 6 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="6">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="6" data-name="Custom Web Application" data-price="75000">Add to Cart</button>
-                    </div>
-                </div>
 
-                <!-- Service Card 7: New Category -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Landing Page Website</h3>
-                        <p>High-converting single-page website for marketing campaigns</p>
-                        <div class="price">KES 10,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Single Page Design</li>
-                            <li><i class="fas fa-check"></i> Lead Capture Forms</li>
-                            <li><i class="fas fa-check"></i> Call-to-Action Buttons</li>
-                            <li><i class="fas fa-check"></i> Basic SEO</li>
-                            <li><i class="fas fa-check"></i> 1 Month Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="7">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="7" data-name="Landing Page Website" data-price="10000">Add to Cart</button>
-                    </div>
-                </div>
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:flex md:space-x-8">
+        
+        <!-- Service Listings -->
+        <section class="md:w-3/4 flex-grow">
+            <h2 class="text-4xl font-bold text-gray-800 mb-6 border-b-4 border-secondary-yellow pb-2">Our Premium Website Solutions</h2>
+            <p class="text-gray-600 mb-8">Select the perfect digital investment for your business. Prices are one-time development fees and are quoted in **Kenya Shillings (KES)**.</p>
+            
+            <div id="service-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Services will be injected here by JavaScript -->
+            </div>
+            
+            <h3 class="text-3xl font-bold text-gray-800 mt-12 mb-6 border-b-4 border-primary-blue pb-2">Essential Digital Services (Add-Ons)</h3>
+            <div id="addon-listings" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Add-ons will be injected here by JavaScript -->
+            </div>
+        </section>
+        
+        <!-- Cart Sidebar (Fixed on Desktop, Hidden on Mobile until toggled) -->
+        <aside id="cart-sidebar" class="fixed right-0 top-0 h-full w-full md:w-1/4 bg-white shadow-2xl z-50 transform translate-x-full md:translate-x-0 transition-transform duration-300 p-6 flex flex-col md:sticky md:h-auto md:top-20 md:shadow-lg md:rounded-xl">
+            <div class="flex justify-between items-center mb-6 border-b pb-3">
+                <h3 class="text-2xl font-bold text-primary-blue">Your Order Summary</h3>
+                <button onclick="closeCart()" class="md:hidden text-gray-500 hover:text-red-500 p-1 rounded-full bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div id="cart-items-container" class="flex-grow overflow-y-auto mb-4 space-y-4">
+                <p id="empty-cart-message" class="text-gray-500 text-center mt-8">Your cart is empty. Start building your digital empire!</p>
+            </div>
 
-                <!-- Service Card 8: New Category -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Membership Website</h3>
-                        <p>Secure member portal with subscription management</p>
-                        <div class="price">KES 50,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Member Registration</li>
-                            <li><i class="fas fa-check"></i> Content Restriction</li>
-                            <li><i class="fas fa-check"></i> Subscription Payments</li>
-                            <li><i class="fas fa-check"></i> Member Dashboard</li>
-                            <li><i class="fas fa-check"></i> 3 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="8">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="8" data-name="Membership Website" data-price="50000">Add to Cart</button>
-                    </div>
+            <div class="space-y-4 pt-4 border-t">
+                <div class="flex justify-between items-center font-semibold text-lg text-gray-800">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal" class="text-primary-blue">KES 0</span>
                 </div>
+                <div class="flex justify-between items-center font-bold text-xl text-primary-blue">
+                    <span>TOTAL (KES):</span>
+                    <span id="cart-total" class="text-4xl">KES 0</span>
+                </div>
+                <button onclick="checkout()" id="checkout-btn" class="w-full py-3 bg-green-600 text-white text-lg font-bold rounded-xl hover:bg-green-700 transition duration-300 shadow-md disabled:bg-gray-400" disabled>
+                    <svg class="w-5 h-5 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Checkout via WhatsApp
+                </button>
+            </div>
+        </aside>
+    </main>
 
-                <!-- Service Card 9: New Category -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Restaurant Website</h3>
-                        <p>Appetizing website with menu, reservations, and online ordering</p>
-                        <div class="price">KES 25,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Menu Display</li>
-                            <li><i class="fas fa-check"></i> Reservation System</li>
-                            <li><i class="fas fa-check"></i> Online Ordering</li>
-                            <li><i class="fas fa-check"></i> Gallery</li>
-                            <li><i class="fas fa-check"></i> 2 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="9">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="9" data-name="Restaurant Website" data-price="25000">Add to Cart</button>
-                    </div>
-                </div>
-
-                <!-- Service Card 10: New Category -->
-                <div class="service-card">
-                    <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
-                    <div class="service-content">
-                        <h3>Real Estate Website</h3>
-                        <p>Property listing site with search and agent profiles</p>
-                        <div class="price">KES 40,000</div>
-                        <ul class="service-features">
-                            <li><i class="fas fa-check"></i> Property Listings</li>
-                            <li><i class="fas fa-check"></i> Search & Filter</li>
-                            <li><i class="fas fa-check"></i> Agent Profiles</li>
-                            <li><i class="fas fa-check"></i> Contact Forms</li>
-                            <li><i class="fas fa-check"></i> 3 Months Support</li>
-                        </ul>
-                        <button class="btn view-details" data-service="10">View Details</button>
-                        <button class="btn btn-accent add-to-cart" data-id="10" data-name="Real Estate Website" data-price="40000">Add to Cart</button>
-                    </div>
-                </div>
+    <!-- Modal for Service Description -->
+    <div id="service-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 hidden items-center justify-center z-50 p-4" onclick="closeModal(event)">
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 transform transition-all duration-300 scale-95" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center border-b pb-3 mb-4">
+                <h3 id="modal-title" class="text-3xl font-bold text-primary-blue"></h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-red-500 p-1">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
-        </div>
-    </section>
-    <!-- About Section -->
-    <section id="about" style="padding: 80px 0; background-color: #f5f5f5;">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Choose WebCraft Kenya?</h2>
-                <p>We understand the unique needs of Kenyan businesses and deliver websites that drive results.</p>
-            </div>
-           
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
-                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-mobile-alt" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px;">Mobile-First Design</h3>
-                    <p>With most Kenyans accessing the internet via mobile, we prioritize mobile-responsive designs.</p>
-                </div>
-               
-                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-bolt" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px;">Fast Loading</h3>
-                    <p>We optimize all websites for fast loading times, crucial for areas with slower internet connections.</p>
-                </div>
-               
-                <div style="text-align: center; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                    <i class="fas fa-headset" style="font-size: 3rem; color: var(--secondary); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px;">Local Support</h3>
-                    <p>We provide ongoing support and maintenance with understanding of local business needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container contact-container">
-            <div class="contact-info">
-                <h3>Get In Touch</h3>
-                <p>Have a project in mind? Contact us today for a free consultation and quote.</p>
-               
-                <div class="contact-methods">
-                    <a href="tel:+254714520249" class="contact-btn">
-                        <i class="fas fa-phone"></i>
-                    </a>
-                    <a href="https://wa.me/254714520249?text=Hello%20WebCraft%20Kenya,%20I'm%20interested%20in%20your%20website%20services" class="contact-btn whatsapp" target="_blank">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="mailto:wokabenny@gmail.com" class="contact-btn email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-           
-            <div class="contact-form">
-                <form id="contactForm">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea rows="5" placeholder="Your Message" required></textarea>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-container">
-            <div class="footer-col">
-                <h4>WebCraft Kenya</h4>
-                <p>Professional website development services tailored for Kenyan businesses.</p>
-            </div>
-           
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-           
-            <div class="footer-col">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Business Websites</a></li>
-                    <li><a href="#">E-commerce Stores</a></li>
-                    <li><a href="#">Corporate Websites</a></li>
-                    <li><a href="#">Portfolio Sites</a></li>
-                    <li><a href="#">Blog Platforms</a></li>
-                    <li><a href="#">Custom Apps</a></li>
-                    <li><a href="#">Landing Pages</a></li>
-                    <li><a href="#">Membership Sites</a></li>
-                    <li><a href="#">Restaurant Sites</a></li>
-                    <li><a href="#">Real Estate Portals</a></li>
-                </ul>
-            </div>
-           
-            <div class="footer-col">
-                <h4>Contact Info</h4>
-                <ul>
-                    <li><i class="fas fa-phone"></i> 0714 520 249</li>
-                    <li><i class="fas fa-envelope"></i> wokabenny@gmail.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
-                </ul>
-            </div>
-        </div>
-       
-        <div class="copyright">
-            <p>&copy; 2025 WebCraft Kenya. All Rights Reserved.</p>
-        </div>
-    </footer>
-    <!-- Cart Overlay -->
-    <div class="cart-overlay" id="cartOverlay">
-        <div class="cart-container">
-            <div class="cart-header">
-                <h2>Your Cart</h2>
-                <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
-            </div>
-           
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be added here dynamically -->
-            </div>
-           
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotal">KES 0</span>
-            </div>
-           
-            <div class="cart-actions">
-                <button class="btn" id="continueShopping">Continue Shopping</button>
-                <button class="btn btn-accent" id="proceedToCheckout">Proceed to Checkout</button>
+            <p id="modal-category" class="text-sm font-semibold text-secondary-yellow uppercase mb-2"></p>
+            <p id="modal-description" class="text-gray-700 leading-relaxed mb-6"></p>
+            <div class="flex justify-between items-center">
+                <span id="modal-price" class="text-3xl font-extrabold text-green-600"></span>
+                <button id="modal-add-to-cart-btn" class="px-6 py-2 bg-primary-blue text-white font-semibold rounded-full hover:bg-blue-800 transition duration-300" onclick="addToCart(this.dataset.id); closeModal();">
+                    Add to Cart
+                </button>
             </div>
         </div>
     </div>
-    <!-- Checkout Modal -->
-    <div class="modal-overlay" id="checkoutModal">
-        <div class="modal">
-            <button class="close-modal" id="closeCheckoutModal"><i class="fas fa-times"></i></button>
-           
-            <div class="modal-header">
-                <h2>Quick Checkout</h2>
-            </div>
-           
-            <div class="checkout-grid">
-                <div class="checkout-form">
-                    <h3>Your Details</h3>
-                    <form id="checkoutForm">
-                        <input type="text" id="customerName" placeholder="Full Name *" required>
-                        <input type="tel" id="customerPhone" placeholder="Phone Number *" required>
-                        <input type="email" id="customerEmail" placeholder="Email (optional)">
-                    </form>
-                </div>
-               
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    <div id="checkoutItems">
-                        <!-- Order items will be added here dynamically -->
-                    </div>
-                    <div class="summary-total">
-                        <span>Total:</span>
-                        <span id="checkoutTotal">KES 0</span>
-                    </div>
-                    <button class="btn btn-accent" id="placeOrderBtn" style="width: 100%; margin-top: 15px;">Order via WhatsApp</button>
-                </div>
-            </div>
-        </div>
+    
+    <!-- Mobile Fixed Contact Bar (Appears at bottom on small screens) -->
+    <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t mobile-fixed-bar z-40 p-3 flex justify-around">
+        <a href="tel:0714520249" class="w-1/3 text-center py-2 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition duration-300 text-sm flex items-center justify-center">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+            Call
+        </a>
+        <a href="mailto:hello@stellarwebs.co.ke?subject=Inquiry%20from%20Website" class="w-1/3 text-center py-2 bg-primary-blue text-white rounded-lg shadow-md hover:bg-blue-800 transition duration-300 text-sm flex items-center justify-center mx-2">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-9 13h9a2 2 0 002-2V7a2 2 0 00-2-2H3a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            Email
+        </a>
+        <button onclick="openCart()" class="w-1/3 text-center py-2 bg-secondary-yellow text-primary-blue rounded-lg shadow-md hover:bg-yellow-400 transition duration-300 text-sm flex items-center justify-center">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            <span id="mobile-cart-count">0</span> Items
+        </button>
     </div>
-    <!-- Service Detail Modals -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
-           
-            <div class="modal-header">
-                <h2 id="modalTitle">Service Details</h2>
-            </div>
-           
-            <div class="modal-content" id="modalContent">
-                <!-- Modal content will be added here dynamically -->
-            </div>
-        </div>
-    </div>
+
+    <!-- JavaScript Logic -->
     <script>
-        // Service details data
-        const serviceDetails = {
-            1: {
-                title: "Basic Business Website",
-                description: "Perfect for small businesses, startups, and individuals looking to establish an online presence with a professional website.",
-                price: "KES 15,000",
-                features: [
-                    "5 custom designed pages (Home, About, Services, Contact, Blog)",
-                    "Fully responsive design (works on all devices)",
-                    "Contact form with email functionality",
-                    "Basic SEO optimization",
-                    "Social media integration",
-                    "1 month of free support and maintenance",
-                    "Domain and hosting guidance",
-                    "Training on how to update content"
-                ],
-                timeline: "7-10 business days",
-                image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            2: {
-                title: "E-commerce Website",
-                description: "Complete online store solution with product management, shopping cart, and secure payment processing.",
-                price: "KES 45,000",
-                features: [
-                    "Unlimited product pages with categories",
-                    "Shopping cart and secure checkout",
-                    "MPesa and credit card payment integration",
-                    "Inventory management system",
-                    "Customer account creation",
-                    "Order tracking and management",
-                    "Email notifications",
-                    "3 months of free support and maintenance",
-                    "Basic SEO optimization",
-                    "Social media integration"
-                ],
-                timeline: "3-4 weeks",
-                image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            3: {
-                title: "Corporate Website",
-                description: "Professional website for established businesses, organizations, and institutions requiring multiple pages and advanced features.",
-                price: "KES 30,000",
-                features: [
-                    "10+ custom designed pages",
-                    "Blog/news section with categories",
-                    "Team member profiles",
-                    "Advanced contact forms",
-                    "Image galleries and sliders",
-                    "Advanced SEO optimization",
-                    "Social media integration",
-                    "Newsletter subscription",
-                    "2 months of free support and maintenance",
-                    "Content management system training"
-                ],
-                timeline: "2-3 weeks",
-                image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            4: {
-                title: "Portfolio Website",
-                description: "Showcase your work, projects, or creative endeavors with a visually appealing portfolio website.",
-                price: "KES 20,000",
-                features: [
-                    "Custom portfolio/gallery layout",
-                    "Project showcase with detailed pages",
-                    "Client testimonials section",
-                    "Contact form with file upload",
-                    "Social media integration",
-                    "1 month of free support and maintenance",
-                    "Basic SEO optimization",
-                    "Mobile-responsive design"
-                ],
-                timeline: "7-10 business days",
-                image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            5: {
-                title: "Blog/News Website",
-                description: "Share your thoughts, news, or articles with a professional blog or news website.",
-                price: "KES 25,000",
-                features: [
-                    "Blog/news management system",
-                    "Category and tag organization",
-                    "Comment system for engagement",
-                    "Newsletter subscription integration",
-                    "Author profiles and management",
-                    "2 months of free support and maintenance",
-                    "SEO optimized for content",
-                    "Social sharing capabilities"
-                ],
-                timeline: "10-14 business days",
-                image: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            6: {
-                title: "Custom Web Application",
-                description: "Build a custom web application tailored to your specific business needs and workflows.",
-                price: "KES 75,000+",
-                features: [
-                    "Custom functionality development",
-                    "User authentication and management",
-                    "Database design and integration",
-                    "API development and integration",
-                    "Advanced security features",
-                    "6 months of free support and maintenance",
-                    "Scalable architecture",
-                    "Performance optimization"
-                ],
-                timeline: "4-8 weeks (depending on complexity)",
-                image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            7: {
-                title: "Landing Page Website",
-                description: "Create a high-impact single-page site designed to convert visitors into leads.",
-                price: "KES 10,000",
-                features: [
-                    "Compelling hero section with CTA",
-                    "Lead capture forms and popups",
-                    "Social proof and testimonials",
-                    "Fast loading single page",
-                    "Basic analytics integration",
-                    "Mobile optimized design",
-                    "1 month of free support",
-                    "A/B testing guidance"
-                ],
-                timeline: "3-5 business days",
-                image: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            8: {
-                title: "Membership Website",
-                description: "Build a secure platform for members with exclusive content and community features.",
-                price: "KES 50,000",
-                features: [
-                    "User registration and login",
-                    "Protected content areas",
-                    "Subscription payment processing",
-                    "Member dashboards and profiles",
-                    "Community forums",
-                    "Email notifications",
-                    "3 months of free support",
-                    "Security hardening"
-                ],
-                timeline: "4-5 weeks",
-                image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            9: {
-                title: "Restaurant Website",
-                description: "Delicious online presence with menu showcase, reservations, and delivery integration.",
-                price: "KES 25,000",
-                features: [
-                    "Interactive menu with categories",
-                    "Online reservation system",
-                    "Delivery partner integration",
-                    "Photo gallery of dishes",
-                    "Location and hours display",
-                    "Social media feeds",
-                    "2 months of free support",
-                    "SEO for local search"
-                ],
-                timeline: "10-14 business days",
-                image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-            },
-            10: {
-                title: "Real Estate Website",
-                description: "Professional property portal with advanced search and listing management.",
-                price: "KES 40,000",
-                features: [
-                    "Property listing management",
-                    "Advanced search and filters",
-                    "Agent and broker profiles",
-                    "Virtual tour integration",
-                    "Lead generation forms",
-                    "MLS integration guidance",
-                    "3 months of free support",
-                    "Mobile app compatibility"
-                ],
-                timeline: "3-4 weeks",
-                image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        const WHATSAPP_NUMBER = "254714520249"; // Note: Kenyan format without + or leading zero for the API
+
+        const services = [
+            { id: 1, name: "Starter Business Website", category: "Core Website", price: 35000, desc: "A robust, professional 5-page site (Home, About, Services, Contact, Blog). Mobile-friendly, basic SEO optimization, and 3 months of free maintenance. Ideal for small businesses seeking an instant online presence.", profitable: true },
+            { id: 2, name: "Advanced E-commerce Platform", category: "Core Website", price: 120000, desc: "A full online store with unlimited product capacity, integrated inventory management, secure payment gateway (M-Pesa, Card), and custom UX/UI design. Built for scalable online sales.", profitable: true },
+            { id: 3, name: "Corporate & NGO Website", category: "Core Website", price: 180000, desc: "10+ pages, advanced features like donor/member portals, high-security protocols, and multi-language support. Bespoke design tailored to strict brand guidelines and corporate governance needs.", profitable: true },
+            { id: 4, name: "Custom Web Application (SaaS)", category: "Bespoke Systems", price: 350000, desc: "A unique, tailor-made software solution (e.g., internal CRM, advanced booking system, or data dashboard) designed to automate specific business workflows and processes.", profitable: true },
+            { id: 5, name: "Professional Blog/Portfolio", category: "Core Website", price: 45000, desc: "Clean, visual design focused on content delivery or showcasing a creative portfolio. Includes integrated comments, SEO tools, and social sharing features. Perfect for writers and creatives.", profitable: false },
+            
+            // Profitable Add-On Services
+            { id: 6, name: "Domain Registration (.co.ke)", category: "Infrastructure (Annual)", price: 1500, desc: "Annual registration and management of your preferred Kenyan domain name (.co.ke). Subject to availability.", profitable: true },
+            { id: 7, name: "Standard Web Hosting (Annual)", category: "Infrastructure (Annual)", price: 6000, desc: "High-speed, secure shared hosting for one year, suitable for Starter or Portfolio websites. Includes a free SSL certificate.", profitable: true },
+            { id: 8, name: "Premium Hosting (Annual)", category: "Infrastructure (Annual)", price: 15000, desc: "VPS-level hosting optimized for high-traffic or E-commerce sites, ensuring maximum uptime and speed performance. Includes enhanced security features.", profitable: true },
+            { id: 9, name: "Monthly Website Maintenance", category: "Recurring Service", price: 5500, desc: "Monthly retainer for regular CMS/plugin updates, backups, security checks, and up to 2 hours of minor content adjustments/bug fixes.", profitable: true },
+            { id: 10, name: "Comprehensive SEO Setup (Initial)", category: "Marketing", price: 40000, desc: "A one-time comprehensive service covering deep keyword research, on-page optimization for 10 key pages, and full integration with Google Analytics & Search Console.", profitable: true },
+            { id: 11, name: "Logo and Brand Identity Package", category: "Design", price: 25000, desc: "Professional design of your company logo (3 concepts, 2 revisions) and a basic brand style guide to ensure visual consistency.", profitable: true },
+            { id: 12, name: "M-Pesa Payment Gateway Integration", category: "Custom Feature", price: 15000, desc: "Full setup and integration of a secure M-Pesa STK Push payment gateway into your website, enabling instant mobile payments.", profitable: true },
+        ];
+
+        let cart = [];
+
+        window.onload = function() {
+            renderServices();
+            updateCartDisplay();
+            // Bind cart toggle on desktop as well
+            document.getElementById('toggle-cart-btn').addEventListener('click', () => {
+                const sidebar = document.getElementById('cart-sidebar');
+                if (sidebar.classList.contains('translate-x-full') && window.innerWidth < 768) {
+                    openCart();
+                } else if (window.innerWidth < 768) {
+                    closeCart();
+                }
+            });
+             // Set up persistent desktop cart view
+            if (window.innerWidth >= 768) {
+                document.getElementById('cart-sidebar').classList.remove('translate-x-full');
             }
         };
-        // Cart functionality
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-       
-        // Ensure cart items have numeric IDs (fix potential type issues)
-        cart = cart.map(item => ({ ...item, id: parseInt(item.id) }));
-        localStorage.setItem('cart', JSON.stringify(cart));
-       
-        // DOM Elements
-        const cartIcon = document.getElementById('cartIcon');
-        const cartOverlay = document.getElementById('cartOverlay');
-        const closeCart = document.getElementById('closeCart');
-        const cartItems = document.getElementById('cartItems');
-        const cartTotal = document.getElementById('cartTotal');
-        const cartCount = document.querySelector('.cart-count');
-        const continueShopping = document.getElementById('continueShopping');
-        const proceedToCheckout = document.getElementById('proceedToCheckout');
-        const addToCartButtons = document.querySelectorAll('.add-to-cart');
-        const viewDetailsButtons = document.querySelectorAll('.view-details');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModal = document.getElementById('closeModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-        const contactForm = document.getElementById('contactForm');
-        const checkoutModal = document.getElementById('checkoutModal');
-        const closeCheckoutModal = document.getElementById('closeCheckoutModal');
-        const checkoutItems = document.getElementById('checkoutItems');
-        const checkoutTotal = document.getElementById('checkoutTotal');
-        const placeOrderBtn = document.getElementById('placeOrderBtn');
-        const checkoutForm = document.getElementById('checkoutForm');
-        // Update cart display
-        function updateCart() {
-            // Update cart count
-            cartCount.textContent = cart.length;
-           
-            // Update cart items
-            cartItems.innerHTML = '';
-            let total = 0;
-           
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p>Your cart is empty</p>';
-            } else {
-                cart.forEach(item => {
-                    const itemElement = document.createElement('div');
-                    itemElement.className = 'cart-item';
-                    itemElement.innerHTML = `
-                        <div class="cart-item-details">
-                            <h4>${item.name}</h4>
-                            <div class="cart-item-price">${formatPrice(item.price)}</div>
-                        </div>
-                        <button class="cart-item-remove" data-id="${item.id}">
-                            <i class="fas fa-trash"></i>
+
+        function formatKES(amount) {
+            // Formats number with commas and prefix
+            return 'KES ' + amount.toLocaleString('en-KE');
+        }
+
+        function renderServices() {
+            const serviceContainer = document.getElementById('service-listings');
+            const addonContainer = document.getElementById('addon-listings');
+            serviceContainer.innerHTML = '';
+            addonContainer.innerHTML = '';
+
+            services.forEach(service => {
+                const card = document.createElement('div');
+                // Use a different color/shadow for highly profitable services to convey premium
+                const cardClass = service.category === 'Core Website' || service.category === 'Bespoke Systems' ? 'bg-white shadow-xl hover:shadow-2xl border-t-4 border-primary-blue' : 'bg-surface-light shadow-md hover:shadow-lg border-t-2 border-secondary-yellow';
+                
+                card.className = `${cardClass} rounded-xl p-6 transition duration-300 transform hover:scale-[1.02] flex flex-col`;
+                card.innerHTML = `
+                    <p class="text-sm font-semibold text-secondary-yellow mb-2">${service.category}</p>
+                    <h4 class="text-xl font-bold text-gray-800 mb-4">${service.name}</h4>
+                    <p class="text-3xl font-extrabold text-green-600 mb-4">${formatKES(service.price)}</p>
+                    <p class="text-gray-600 text-sm flex-grow mb-4">${service.desc.substring(0, 100)}...</p>
+                    <div class="mt-auto flex space-x-2">
+                        <button onclick="openModal(${service.id})" class="text-primary-blue text-sm font-semibold hover:text-blue-700 transition duration-300 underline">
+                            View Details
                         </button>
-                    `;
-                    cartItems.appendChild(itemElement);
-                    total += item.price;
-                });
-            }
-           
-            // Update total
-            cartTotal.textContent = formatPrice(total);
-           
-            // Save to localStorage
-            localStorage.setItem('cart', JSON.stringify(cart));
-           
-            // Add event listeners to remove buttons
-            document.querySelectorAll('.cart-item-remove').forEach(button => {
-                button.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    removeFromCart(id);
-                });
-            });
-        }
-       
-        // Format price as KES
-        function formatPrice(price) {
-            return `KES ${price.toLocaleString()}`;
-        }
-       
-        // Add to cart
-        function addToCart(id, name, price) {
-            id = parseInt(id);
-            const numericPrice = parseInt(price);
-           
-            // Check if item already in cart
-            const existingItem = cart.find(item => item.id === id);
-           
-            if (existingItem) {
-                alert('This item is already in your cart.');
-                return;
-            }
-           
-            // Add to cart
-            cart.push({ id, name, price: numericPrice });
-            updateCart();
-           
-            // Show confirmation
-            alert(`${name} has been added to your cart!`);
-        }
-       
-        // Remove from cart
-        function removeFromCart(id) {
-            cart = cart.filter(item => item.id !== id);
-            updateCart();
-        }
-       
-        // Show service details modal
-        function showServiceDetails(serviceId) {
-            const service = serviceDetails[parseInt(serviceId)];
-           
-            if (!service) return;
-           
-            modalTitle.textContent = service.title;
-           
-            modalContent.innerHTML = `
-                <div>
-                    <img src="${service.image}" alt="${service.title}" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
-                    <p>${service.description}</p>
-                    <div class="price" style="font-size: 1.8rem; margin: 20px 0;">${service.price}</div>
-                    <button class="btn btn-accent add-to-cart" data-id="${serviceId}" data-name="${service.title}" data-price="${service.price.replace(/\D/g, '')}">Add to Cart</button>
-                </div>
-                <div>
-                    <h3 style="margin-bottom: 15px;">Features</h3>
-                    <ul class="modal-features">
-                        ${service.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
-                    </ul>
-                    <div style="margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 5px;">
-                        <strong>Estimated Delivery:</strong> ${service.timeline}
+                        <button onclick="addToCart(${service.id})" class="flex-1 py-2 bg-primary-blue text-white text-sm font-semibold rounded-lg hover:bg-blue-800 transition duration-300 shadow-md">
+                            Add to Cart
+                        </button>
                     </div>
-                </div>
-            `;
-           
-            modalOverlay.style.display = 'flex';
-           
-            // Add event listener to the add to cart button in the modal
-            const modalAddToCart = modalContent.querySelector('.add-to-cart');
-            if (modalAddToCart) {
-                modalAddToCart.addEventListener('click', function() {
-                    const id = this.getAttribute('data-id');
-                    const name = this.getAttribute('data-name');
-                    const price = this.getAttribute('data-price');
-                    addToCart(id, name, price);
-                    modalOverlay.style.display = 'none';
-                });
-            }
-        }
-       
-        // Show checkout modal
-        function showCheckoutModal() {
-            if (cart.length === 0) {
-                alert('Your cart is empty. Please add items to your cart before proceeding to checkout.');
-                return;
-            }
-           
-            // Update checkout items
-            checkoutItems.innerHTML = '';
-            let total = 0;
-           
-            cart.forEach(item => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'summary-item';
-                itemElement.innerHTML = `
-                    <span>${item.name}</span>
-                    <span>${formatPrice(item.price)}</span>
                 `;
-                checkoutItems.appendChild(itemElement);
-                total += item.price;
+                
+                if (service.category.includes('Website') || service.category.includes('Systems')) {
+                    serviceContainer.appendChild(card);
+                } else {
+                    addonContainer.appendChild(card);
+                }
             });
-           
-            // Update checkout total
-            checkoutTotal.textContent = formatPrice(total);
-           
-            // Show checkout modal
-            cartOverlay.style.display = 'none';
-            checkoutModal.style.display = 'flex';
         }
-       
-        // Place order function
-        function placeOrder() {
-            const name = document.getElementById('customerName').value.trim();
-            const email = document.getElementById('customerEmail').value.trim();
-            const phone = document.getElementById('customerPhone').value.trim();
-           
-            if (!name || !phone) {
-                alert('Please fill in required fields: Name and Phone Number.');
+
+        function openModal(serviceId) {
+            const service = services.find(s => s.id === serviceId);
+            if (!service) return;
+
+            document.getElementById('modal-title').textContent = service.name;
+            document.getElementById('modal-category').textContent = service.category;
+            document.getElementById('modal-description').textContent = service.desc;
+            document.getElementById('modal-price').textContent = formatKES(service.price);
+            document.getElementById('modal-add-to-cart-btn').dataset.id = service.id;
+            
+            document.getElementById('service-modal').classList.remove('hidden');
+            document.getElementById('service-modal').classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== document.getElementById('service-modal')) {
                 return;
             }
-           
-            // Create order summary for WhatsApp message
-            let orderSummary = `*NEW WEBSITE ORDER*\n\n`;
-            orderSummary += `*Customer:*\n`;
-            orderSummary += `Name: ${name}\n`;
-            orderSummary += `Phone: ${phone}\n`;
-            if (email) orderSummary += `Email: ${email}\n`;
-            orderSummary += `\n*Items:*\n`;
-            let total = 0;
-            cart.forEach(item => {
-                orderSummary += `- ${item.name}: KES ${item.price.toLocaleString()}\n`;
-                total += item.price;
-            });
-           
-            orderSummary += `\n*Total: KES ${total.toLocaleString()}*\n\n`;
-            orderSummary += `*Date:* ${new Date().toLocaleString('en-KE', { timeZone: 'Africa/Nairobi' })}`;
-           
-            // Encode the message for WhatsApp URL
-            const encodedMessage = encodeURIComponent(orderSummary);
-           
-            // Redirect to WhatsApp
-            window.location.href = `https://wa.me/254714520249?text=${encodedMessage}`;
-           
-            // Clear cart
-            cart = [];
-            updateCart();
-            checkoutModal.style.display = 'none';
-            checkoutForm.reset();
+            document.getElementById('service-modal').classList.add('hidden');
+            document.getElementById('service-modal').classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
         }
-       
-        // Event Listeners
-        if (cartIcon) {
-            cartIcon.addEventListener('click', function() {
-                cartOverlay.style.display = 'flex';
-            });
+
+        function addToCart(serviceId) {
+            const service = services.find(s => s.id === parseInt(serviceId));
+            if (!service) return;
+
+            const existingItem = cart.find(item => item.id === service.id);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...service, quantity: 1 });
+            }
+
+            updateCartDisplay();
         }
-       
-        if (closeCart) {
-            closeCart.addEventListener('click', function() {
-                cartOverlay.style.display = 'none';
-            });
+
+        function removeFromCart(serviceId) {
+            const serviceIndex = cart.findIndex(item => item.id === parseInt(serviceId));
+
+            if (serviceIndex > -1) {
+                const item = cart[serviceIndex];
+                if (item.quantity > 1) {
+                    item.quantity -= 1;
+                } else {
+                    cart.splice(serviceIndex, 1);
+                }
+            }
+
+            updateCartDisplay();
         }
-       
-        if (continueShopping) {
-            continueShopping.addEventListener('click', function() {
-                cartOverlay.style.display = 'none';
-            });
-        }
-       
-        if (proceedToCheckout) {
-            proceedToCheckout.addEventListener('click', showCheckoutModal);
-        }
-       
-        if (closeModal) {
-            closeModal.addEventListener('click', function() {
-                modalOverlay.style.display = 'none';
-            });
-        }
-       
-        if (closeCheckoutModal) {
-            closeCheckoutModal.addEventListener('click', function() {
-                checkoutModal.style.display = 'none';
-            });
-        }
-       
-        if (placeOrderBtn) {
-            placeOrderBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                placeOrder();
-            });
-        }
-       
-        // Add to cart buttons
-        if (addToCartButtons.length > 0) {
-            addToCartButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.getAttribute('data-id');
-                    const name = this.getAttribute('data-name');
-                    const price = this.getAttribute('data-price');
-                    addToCart(id, name, price);
-                });
-            });
-        }
-       
-        // View details buttons
-        if (viewDetailsButtons.length > 0) {
-            viewDetailsButtons.forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const serviceId = this.getAttribute('data-service');
-                    showServiceDetails(serviceId);
-                });
-            });
-        }
-       
-        // Contact form submission
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! We will get back to you soon.');
-                this.reset();
-            });
-        }
-       
-        // Close modals on overlay click
-        [cartOverlay, modalOverlay, checkoutModal].forEach(overlay => {
-            if (overlay) {
-                overlay.addEventListener('click', function(e) {
-                    if (e.target === this) {
-                        this.style.display = 'none';
-                    }
+
+        function updateCartDisplay() {
+            const container = document.getElementById('cart-items-container');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+            const mobileCountEl = document.getElementById('mobile-cart-count');
+            const emptyMessage = document.getElementById('empty-cart-message');
+            const checkoutBtn = document.getElementById('checkout-btn');
+            
+            container.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyMessage.style.display = 'block';
+                checkoutBtn.disabled = true;
+            } else {
+                emptyMessage.style.display = 'none';
+                checkoutBtn.disabled = false;
+
+                cart.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex items-center justify-between border-b pb-2';
+                    itemEl.innerHTML = `
+                        <div>
+                            <p class="font-semibold text-gray-800">${item.name}</p>
+                            <p class="text-xs text-gray-500">${item.category}</p>
+                            <p class="text-sm font-medium text-green-600">${formatKES(item.price)} x ${item.quantity}</p>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 p-1 rounded-full border border-red-300 transition duration-150">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"></path></svg>
+                            </button>
+                            <span class="text-sm font-bold w-4 text-center">${item.quantity}</span>
+                            <button onclick="addToCart(${item.id})" class="text-primary-blue hover:text-blue-700 p-1 rounded-full border border-primary-blue transition duration-150">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(itemEl);
                 });
             }
-        });
-       
-        // Initialize cart on page load
-        updateCart();
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            subtotalEl.textContent = formatKES(total);
+            totalEl.textContent = formatKES(total);
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            countEl.textContent = totalItems;
+            mobileCountEl.textContent = totalItems;
+        }
+        
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.remove('translate-x-full');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.add('translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                // Should be disabled, but safety check
+                return; 
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            let message = `Hello Stellar Web Solutions! I would like to place an order for the following custom services:\n\n`;
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. ${item.name} (${item.category})\n   - Quantity: ${item.quantity}\n   - Price: ${formatKES(item.price * item.quantity)}\n\n`;
+            });
+
+            message += `----------------------------\n`;
+            message += `TOTAL QUOTE: ${formatKES(total)}\n`;
+            message += `----------------------------\n\n`;
+            message += `Please contact me to discuss the next steps for my project.`;
+
+            // URL encode the message
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Construct the WhatsApp URL
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            // Redirect the user
+            window.open(whatsappUrl, '_blank');
+            
+            // Clear the cart after redirecting, assuming the order is being placed
+            cart = [];
+            updateCartDisplay();
+        }
     </script>
+
 </body>
 </html>
